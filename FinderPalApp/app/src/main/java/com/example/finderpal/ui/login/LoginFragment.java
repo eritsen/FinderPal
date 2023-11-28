@@ -18,14 +18,14 @@ public class LoginFragment extends Fragment{
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        LoginViewModel loginViewModel =
-                new ViewModelProvider(this).get(LoginViewModel.class);
+        //LoginViewModel loginViewModel =
+                //new ViewModelProvider(this).get(LoginViewModel.class);
 
         binding = FragmentLoginBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textLogin;
-        loginViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        //loginViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
