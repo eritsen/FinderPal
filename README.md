@@ -16,9 +16,10 @@ Finder Pal is a cutting-edge warehouse robot developed as part of our capstone p
 
 1. [Getting Started](#getting-started)
 2. [Prerequisites](#prerequisites)
-3. [Installation](#installation)
-4. [Configuration](#configuration)
-5. [Usage](#usage)
+3. [Installation App](#installation-app)
+4. [Installation Web](#installation-web)
+5. [Configuration](#configuration)
+6. [Usage](#usage)
 
 
 
@@ -42,9 +43,10 @@ Before installing and using Finder Pal on your iPhone, please ensure that you me
 
 By meeting these prerequisites, you'll be ready to install and use Finder Pal on your iPhone for efficient warehouse management and automation.
 
-### Installation
 
-Finder Pal is available for installation on the Apple App Store for iPhone devices. To get started, follow these simple steps:
+### Installation App
+
+Finder Pal is available for installation on the Play Store for Android devices. To get started, follow these simple steps:
 
 1. Open the App Store on your iPhone.
 
@@ -62,6 +64,46 @@ Please ensure that your iPhone meets the app's system requirements, and make sur
 
 For any support or technical assistance related to the installation and usage of Finder Pal, please reach out to our support team through the app.
 
+
+### Installation Web
+
+1. Download the Xampp server system
+
+2. Download the mySQL workbench and server
+    
+4. Download the FinderPal-Web/styles folder and the users.sql file
+
+5. Unzip the folder
+
+6. Open the Xampp system and Start the Apache and MySQL modules
+
+7. Open the Xampp explorer
+
+8. Move the FinderPal-Web/styles folder into the xampp\htdocs folder
+
+9. Open your local mySQL server instance
+
+10. In the top navigation bar, go to server -> Data import
+
+11. Check the "Import from Self-Contained File" option
+
+12. Using the three dots on the left side, navigate to the users.sql file
+
+13. Click the "New" button to change the schema name
+
+14. Enter the name "finderpalusers"
+
+15. Click the "Start Import" button
+
+16. On the left side of the screen, refresh the "SCHEMAS" section, there should be a new "finderpalusers" Schema
+
+17. Verify correct import by opening up the "tables" section, right-clicking the "users" table and click "Select Rows - Limit 1000" button
+
+18. Verify there are 4 IDs currently within the table
+
+19. Navigate to the http://localhost/dashboard/ page in your web browser, confirm the Xampp welcome page shows
+
+20. Navigate to the http://localhost/FinderPal-Web/styles/FinderPalPhp.php page in your web browser and use one of the names from the sql table to log in
 
 
 ### Configuration
