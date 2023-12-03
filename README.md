@@ -4,7 +4,7 @@ CIT  485 - Capstone Project
 
 For  the Image Recognition script you will need to download a Model available from
 https://github.com/OlafenwaMoses/ImageAI/releases
-This need to be put in a folder labeled "DataSets" in the same directory as the script.
+This needs to be put in a folder labeled "DataSets" in the same directory as the script.
 *Note the default is set to Yolov3, if you wish to use any other than you'll need to modify
 the SetUpModel() function to reflect the correct model.
 
