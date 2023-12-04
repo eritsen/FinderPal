@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_login">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -28,4 +28,10 @@
         android:name="com.example.finderpal.ui.login.LoginFragment"
         android:label="@string/title_login"
         tools:layout="@layout/fragment_login" />
+
+    <fragment
+        android:id="@+id/navigation_robotcontrol"
+        android:name="com.example.finderpal.ui.robot_control.RobotControlFragment"
+        android:label="@string/title_robot_control"
+        tools:layout="@layout/fragment_robot_control" />
 </navigation>

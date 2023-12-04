@@ -41,6 +41,22 @@
         app:layout_constraintTop_toBottomOf="@+id/text_login"
         tools:ignore="Autofill" />
 
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="172dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="119dp"
+        android:layout_marginTop="464dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="218dp"
+        android:text="Login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
     <EditText
         android:id="@+id/password_text"
         android:layout_width="wrap_content"
@@ -51,12 +67,11 @@
         android:layout_marginBottom="371dp"
         android:ems="10"
         android:hint="@string/enter_password"
-        android:inputType="numberPassword"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username_text"
-        tools:ignore="Autofill" />
+        tools:ignore="Autofill"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

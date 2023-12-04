@@ -1,34 +1,31 @@
-package com.example.finderpal.ui.login;
+package com.example.finderpal.ui.robot_control;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.finderpal.databinding.FragmentLoginBinding;
+import com.example.finderpal.databinding.FragmentRobotControlBinding;
 
-public class LoginFragment extends Fragment{
+public class RobotControlFragment extends Fragment {
 
-    private FragmentLoginBinding binding;
+    private FragmentRobotControlBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        //LoginViewModel loginViewModel =
-                //new ViewModelProvider(this).get(LoginViewModel.class);
+        RobotControlViewModel robotcontrolViewModel =
+                new ViewModelProvider(this).get(RobotControlViewModel.class);
 
-        binding = FragmentLoginBinding.inflate(inflater, container, false);
+        binding = FragmentRobotControlBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-
-        final TextView textView = binding.textLogin;
-        //loginViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.textRobotcontrol;
+        robotcontrolViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
