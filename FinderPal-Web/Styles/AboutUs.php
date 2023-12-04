@@ -16,28 +16,33 @@
     <br />
     <div class="upper">
             <div class="person-info">
-                <h2>Fares Ibrahim</h2>
-                <img src="" alt="Robot Image" class="image" id="Fares">
-                <p>Career: CS</p>
-                <br>
-                <p>From: Bethlehem</p>
-            </div>
-            <div class="">
                 
-                <img src="" alt="Activity Log Image" class="image" id="Evan">
+                <img src="user-icon.png" class="image" id="Fares">
+             <p><b> Fares Ibrahim<br><br>CS major<br><br>faresi@umich.edu</b></p>
+
+            </div>
+            <div class="person-info">
+                
+                <img src="user-icon.png" class="image" id="Evan">
+                <p><b>Evan Ritsen <br><br> CS major <br><br> eritsen@umich.edu</b></p>
+
                 
             </div>
-        </div>
+        
+</div>
 
         <div class="lower">
-            <div class="">
+            <div class="person-info">
                 
-                <img src="" alt="Inventory Image" class="image" id="Dominic">
+                <img src="user-icon.png"  class="image" id="Dominic">
+                <p><b>Dominic Verna <br><br> CS major <br><br> dverna@umich.edu</b></p>
                
             </div>
-            <div class="">
+            <div class="person-info">
                 
-                <img src="" alt="About Us Image" class="image" id="Nathan">
+                <img src="user-icon.png"  class="image" id="Nathan">
+                <p><b>Nathan Zender <br><br> CS major <br><br> nzender@umich.edu</b></p>
+
                 
             </div>
         </div>
