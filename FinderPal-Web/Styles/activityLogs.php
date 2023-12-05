@@ -14,7 +14,7 @@
     <!-- Activity log will be dynamically populated here -->
   </div>
 
-    <button id="clearLogs">Clear Logs</button>
+    <button id="clearLogs"><b>Clear Logs</b></button>
 
 
   <div class="back-button" onclick="goBack()">
@@ -23,7 +23,7 @@
 
 </div>
 
-  <script src="script.js"></script>
+  <script defer src="script.js"></script>
 
 </body>
 </html>

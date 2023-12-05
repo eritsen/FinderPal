@@ -1,2 +1,65 @@
-﻿name: Finder Pal
-link: https://www.fontspace.com/collection/finder-pal-c6z2xjl
+﻿Ideas for Novemember 21st 2023 Meeting:
+
+Label ideas for Open Label extension:
+
+1- what if we add a label that informs the user about the readability of the article? For example, the label displays beginner, intermediate, or advanced based on the article, or maybe display a score out of 10. There are several ways to achieve this, for example we can use the Flesch-Kincaid Grade level. (اسال تشات جي بي تي عن السودوكود تبع هاي الطريقة)
+
+2- Add fast-checking API's to check if the claims in the articles are legit or not. examples, factCheck.org API, Snopes API.
+
+This is the fast checking API implementation for Open Label(pseudocode)
+// Function to check claims using a fact-checking API
+function checkClaims(articleClaims):
+    apiKey = 'YOUR_API_KEY'  // Replace with your actual API key
+    apiUrl = 'https://fact-checking-api.com/check'
+
+    // Create the request body
+    requestBody = {
+        claims: articleClaims,
+        // Other parameters as required by the API
+    }
+
+    try:
+        // Make a POST request to the fact-checking API
+        response = fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`,
+            },
+            body: JSON.stringify(requestBody),
+        })
+
+        // Check if the response is successful
+        if not response.ok:
+            throw new Error('Failed to fetch data from the API')
+
+        // Parse the JSON response
+        result = response.json()
+
+        // Process the result from the fact-checking API
+        displayResult(result)
+
+    catch (error):
+        // Handle errors
+        logError('Error:', error.message)
+
+// Function to display the fact-checking result
+function displayResult(result):
+    // Process and display the result in your application
+    log('Fact-checking result:', result)
+
+// Example usage
+articleClaims = ["Claim 1", "Claim 2"]
+checkClaims(articleClaims)
+
+
+3- For pulling the author's name. this is the pseudocode, When the document is ready. I told Chase that I don't think there is one specific way to pull the author's name from an article, because each article has a different structure. The most common and useful method would be to pull the author's name from the metadata, if that doesn't work, we can try and looking for div's with the class name of author. and I was writing a pseudocode for executing that operation. pseudocode:
+    Find the element with class "author"
+    Get the text content of the found element
+    Display the author's name in the console
+
+Example HTML:
+    <div class="author">John Doe</div>
+
+
+IT IS GOING TO BE MULTIPLE IF/ELSE STATEMENTS.

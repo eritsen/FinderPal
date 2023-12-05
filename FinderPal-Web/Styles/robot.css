@@ -15,7 +15,9 @@
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-left: 20px; /* Add padding to the left for spacing */
+
     animation: color 12s ease-in-out infinite;
 }
 
@@ -79,9 +81,7 @@ h1 {
 }
 
 
-
-
-
+/*Direction arrows*/
 .arrow-button-middle {
     
     color: black;
@@ -136,13 +136,21 @@ h1 {
     transition: background-color 0.5s;
 }
 
-.button-container {
+
+/*command buttons div design
+*/.button-container {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    transform: translate(270%,-50%);
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
     margin-top: 10px; /* Add margin to the top for spacing */
+    margin-left: 20px; /* Add margin to the left for spacing */
 }
 
+/*buttons design*/
 .commands {
     width: 230px;
     height: 40px;
@@ -164,12 +172,21 @@ h1 {
         transition: background-color 0.5s;
     }
 
-
-/*.arrow-button.up {
-        margin-bottom: 10px;
+.image-box {
+    
+    margin-top: 20px; /* Adjust the margin as needed */
+    border: 2px solid #3498db; /* Border color */
+    border-radius: 10px; /* Border radius for rounded corners */
+    overflow: hidden; /* Hide overflow content */
+    margin-left: 300px;
 }
 
-.arrow-button.down {
-        margin-top: 10px;
-}*/
+.image {
+    width: 100%; /* Make the image fill the container */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove any extra space beneath the image */
+}
+
+
+
 
