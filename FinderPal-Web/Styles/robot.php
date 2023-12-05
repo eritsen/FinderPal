@@ -1,9 +1,16 @@
 <?php
-/*include('Net/SSH2.php');
+include('Net/SSH2.php');
 
 $ssh = new Net_SSH2('172.20.10.4');
 if (!$ssh->login('desktop', 'admin')) {
     exit('Login Failed');
+}
+
+function executeOnTargetServer($command) {
+    global $ssh;
+
+    $output = $ssh->exec($command);
+    return $output;
 }
 
 // Function to execute commands based on the clicked button
@@ -12,13 +19,13 @@ function executeCommand($buttonName) {
 
     switch ($buttonName) {
         case 'Navigate':
-            return $ssh->exec('python navigate.py');
+            return executeOnTargetServer('python navigate.py');
         case 'Return to base':
-            return $ssh->exec('python return_to_base.py');
+            return executeOnTargetServer('python return_to_base.py');
         case 'Search for item':
-            return $ssh->exec('python search_for_item.py');
+            return executeOnTargetServer('python search_for_item.py');
         case 'Kill operation':
-            return $ssh->exec('python kill.py');
+            return executeOnTargetServer('python kill.py');
         default:
             return 'Invalid button clicked';
     }
@@ -33,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit; // Stop further execution after handling the command
     }
 }
-*/
+
 ?>
 
 <!DOCTYPE html>
