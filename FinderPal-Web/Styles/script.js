@@ -5,6 +5,9 @@ var activityLogButton = document.getElementById("activityLogButton");
 var inventoryButton = document.getElementById("inventory");
 var activityLog = document.getElementById("activityLog");
 var existingLog = JSON.parse(localStorage.getItem('activityLog')) || [];
+var isButtonPressed = false; //check if the user is holding down a button
+
+
 
 // Add event listeners to buttons
 if (button1) {
@@ -65,13 +68,23 @@ existingLog.forEach(function (entry) {
 });
 
 // Clear logs button
-document.getElementById('clearLogs').addEventListener('click', function () {
-    localStorage.removeItem('activityLog');
-    activityLog.innerHTML = ''; // Remove all child elements
-});
+document.addEventListener('DOMContentLoaded', function () {
+    const el = document.getElementById('clearLogs');
 
+    if (el) {
+        el.addEventListener('click', function () {
+            localStorage.removeItem('activityLog');
+
+            const activityLog = document.getElementById('activityLog');
+
+            if (activityLog) {
+                activityLog.innerHTML = ''; // Remove all child elements
+            }
+        });
+    }
+});
 // Keyboard event listener
-document.addEventListener('keydown', handleKeyPress);
+//document.addEventListener('keydown', handleKeyPress);
 
 // Go back function
 function goBack() {

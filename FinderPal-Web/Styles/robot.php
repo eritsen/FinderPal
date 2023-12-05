@@ -1,5 +1,5 @@
 <?php
-include('Net/SSH2.php');
+/*include('Net/SSH2.php');
 
 $ssh = new Net_SSH2('172.20.10.4');
 if (!$ssh->login('desktop', 'admin')) {
@@ -33,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit; // Stop further execution after handling the command
     }
 }
+*/
 ?>
 
 <!DOCTYPE html>
@@ -49,12 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container">
         <br />
         <h1><b>Robot</b></h1>
-        <button class="arrow-button-up">↑</button>
+        <button class="arrow-button-up" onclick="logCommand('Move Forward')">↑</button>
         <div>
-            <button class="arrow-button-middle">←</button>
-            <button class="arrow-button-middle">→</button>
+            <button class="arrow-button-middle" onclick="logCommand('Move Left')">←</button>
+            <button class="arrow-button-middle" onclick="logCommand('Move Right')">→</button>
         </div>
-        <button class="arrow-button-down">↓</button>
+        <button class="arrow-button-down" onclick="logCommand('Move Backwards')">↓</button>
 
         <div class="button-container">
             <button class="commands" onclick="logCommand('Navigate')">Navigate</button>
@@ -63,12 +64,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button class="commands" onclick="logCommand('Kill operation')">Kill operation</button>
         </div>
 
+      <div class="image-box">
+        <img src="image.jpg" alt="Image Description" class="image">
+    </div>
+
         <div class="back-button" onclick="goBack()">
             <img src="download2.png" alt="Back Arrow" class="backImage">
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script defer src="script.js"></script>
 </body>
 
 </html>

@@ -23,7 +23,7 @@
 
 </div>
 
-  <script src="script.js"></script>
+  <script defer src="script.js"></script>
 
 </body>
 </html>
