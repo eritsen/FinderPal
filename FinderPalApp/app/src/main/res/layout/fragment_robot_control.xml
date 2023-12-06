@@ -44,7 +44,8 @@
         android:layout_height="wrap_content"
         android:text="Right"
         app:layout_constraintBottom_toTopOf="@+id/arrowbackwardsbutton"
-        app:layout_constraintStart_toEndOf="@+id/arrowbackwardsbutton" />
+        app:layout_constraintStart_toEndOf="@+id/arrowbackwardsbutton"
+        android:enabled="false" />
 
     <Button
         android:id="@+id/arrowleftbutton"
@@ -52,7 +53,8 @@
         android:layout_height="wrap_content"
         android:text="Left"
         app:layout_constraintBottom_toTopOf="@+id/arrowbackwardsbutton"
-        app:layout_constraintEnd_toStartOf="@+id/arrowbackwardsbutton" />
+        app:layout_constraintEnd_toStartOf="@+id/arrowbackwardsbutton"
+        android:enabled="false" />
 
     <Button
         android:id="@+id/arrowbackwardsbutton"
@@ -63,7 +65,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:enabled="false" />
 
     <Button
         android:id="@+id/arrowforwardbutton"
@@ -73,7 +76,8 @@
         app:layout_constraintBottom_toTopOf="@+id/arrowleftbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:enabled="false" />
 
     <Button
         android:id="@+id/searchforitembutton"

@@ -26,6 +26,7 @@ import com.example.finderpal.databinding.ActivityMainBinding;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.Array;
+import java.net.SocketAddress;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {

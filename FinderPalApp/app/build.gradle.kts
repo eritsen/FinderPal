@@ -29,6 +29,10 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    packagingOptions {
+        exclude("META-INF/DEPENDENCIES")
+    }
 }
 
 dependencies {
@@ -51,4 +55,12 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    // Adding implementations required for apache mina library
+    implementation ("org.apache.mina:mina-core:3.0.0-M2")
+    implementation ("org.apache.sshd:sshd-core:2.1.0")
+    implementation ("org.apache.sshd:sshd-putty:2.1.0")
+    implementation ("org.apache.sshd:sshd-common:2.1.0")
+    implementation ("org.slf4j:slf4j-api:1.7.5")
+    implementation ("org.slf4j:slf4j-simple:1.6.4")
 }

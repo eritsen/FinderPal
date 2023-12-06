@@ -1,5 +1,8 @@
 package com.example.finderpal.ui.robot_control;
 
+import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 
@@ -7,7 +10,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.finderpal.MainActivity;
 import com.example.finderpal.R;
+import com.example.finderpal.sshActivity;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -27,7 +32,6 @@ public class RobotControlViewModel extends ViewModel {
 
     public static void onForwardButtonClick()
     {
-
         Log.i("Forward button","forward button pressed");
     }
     public static void onBackwardButtonClick()
@@ -54,52 +58,45 @@ public class RobotControlViewModel extends ViewModel {
         Log.i("Manual Control Disable button","Manual Control Disable button pressed");
     }
 
-    public static void doPutRequest()
+    public void initiateSSHConnection(Context context)
     {
-        //performs http put request to send data to the /resource endpoint on the localhost server
-        URL url = null;
         try {
-            url = new URL("http://localhost/resource");
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
+            // Create an intent for sshActivity
+            Intent intent = new Intent(context, sshActivity.class);
+
+            String host = "example";
+            String port = "22";
+            String username = "example";
+            String password = "example";
+
+            // Pass on data to sshActivity via intent
+            intent.putExtra("host", host);
+            intent.putExtra("port", port);
+            intent.putExtra("username", username);
+            intent.putExtra("password", password);
+            context.startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            // Handle if the activity is not found
+            e.printStackTrace();
+            // Display an error message or handle the exception as needed
+            Log.e("SSHActivityNotFound", "The SSH activity is not found");
+            // You can also show a toast or alert dialog to inform the user
+        } catch (Exception e) {
+            // Handle other exceptions
+            e.printStackTrace();
+            // Display an error message or handle the exception as needed
+            Log.e("SSHConnectionError", "Error while initiating SSH connection");
         }
-        HttpURLConnection httpCon = null;
-        try {
-            httpCon = (HttpURLConnection) url.openConnection();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        httpCon.setDoOutput(true);
-        try {
-            httpCon.setRequestMethod("PUT");
-        } catch (ProtocolException e) {
-            throw new RuntimeException(e);
-        }
-        OutputStreamWriter out = null;
-        try {
-            out = new OutputStreamWriter(
-                    httpCon.getOutputStream());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            out.write("Resource content");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            out.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            httpCon.getInputStream();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
 
     }
 
+    public void sendStringOverSSH(String dataToSend) {
+
+        // Send the string over SSH connection
+        sshActivity sshActivityInstance = new sshActivity();
+        sshActivityInstance.sendStringOverSSH(dataToSend);
+    }
 
     public LiveData<String> getText() {
         return mText;

@@ -11,8 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.finderpal.MainActivity;
 import com.example.finderpal.R;
 import com.example.finderpal.databinding.FragmentRobotControlBinding;
+import org.apache.sshd.common.io.PacketWriter;
 
 public class RobotControlFragment extends Fragment {
 
@@ -33,11 +35,13 @@ public class RobotControlFragment extends Fragment {
         Button backwardsButton = root.findViewById(R.id.arrowbackwardsbutton);
         Button leftButton = root.findViewById(R.id.arrowleftbutton);
         Button rightButton = root.findViewById(R.id.arrowrightbutton);
+        RobotControlViewModel viewModel = new ViewModelProvider(requireActivity()).get(RobotControlViewModel.class);
 
         forwardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
+                viewModel.sendStringOverSSH("Forward");
                 RobotControlViewModel.onForwardButtonClick();
             }
         });
@@ -46,7 +50,7 @@ public class RobotControlFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                //
+                viewModel.sendStringOverSSH("Backwards");
                 RobotControlViewModel.onBackwardButtonClick();
             }
         });
@@ -55,7 +59,7 @@ public class RobotControlFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                //
+                viewModel.sendStringOverSSH("Left");
                 RobotControlViewModel.onLeftButtonClick();
             }
         });
@@ -64,7 +68,7 @@ public class RobotControlFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                //
+                viewModel.sendStringOverSSH("Right");
                 RobotControlViewModel.onRightButtonClick();
             }
         });
@@ -73,6 +77,11 @@ public class RobotControlFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
+                forwardButton.setEnabled(false);
+                backwardsButton.setEnabled(false);
+                leftButton.setEnabled(false);
+                rightButton.setEnabled(false);
+
                 manualControlEnableButton.setEnabled(true);
                 RobotControlViewModel.onManualControlDisableButtonClick();
                 manualControlDisableButton.setEnabled(false);
@@ -83,6 +92,13 @@ public class RobotControlFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
+                forwardButton.setEnabled(true);
+                backwardsButton.setEnabled(true);
+                leftButton.setEnabled(true);
+                rightButton.setEnabled(true);
+
+                RobotControlViewModel viewModel = new ViewModelProvider(requireActivity()).get(RobotControlViewModel.class);
+                viewModel.initiateSSHConnection(requireContext());
                 manualControlDisableButton.setEnabled(true);
                 RobotControlViewModel.onManualControlEnableButtonClick();
                 manualControlEnableButton.setEnabled(false);
