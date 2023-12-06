@@ -13,6 +13,11 @@ function executeOnTargetServer($command) {
     return $output;
 }
 
+$imageFilePath = 'image.jpg';
+if (file_exists($imageFilePath)) {
+    unlink($imageFilePath);
+}
+
 // Function to execute commands based on the clicked button
 function executeCommand($buttonName) {
     global $ssh; // Access the global $ssh variable
