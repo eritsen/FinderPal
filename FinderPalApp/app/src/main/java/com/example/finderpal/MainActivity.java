@@ -1,6 +1,12 @@
 package com.example.finderpal;
 
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +15,7 @@ import android.widget.EditText;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -16,14 +23,18 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.finderpal.databinding.ActivityMainBinding;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.lang.reflect.Array;
+import java.net.SocketAddress;
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private Button loginButton;
 
-    private String[] acceptedUsernames = {"nzender","fibrahim","eritsen","dverna"};
+    private String[] acceptedUsernames = {"nzender", "fibrahim", "eritsen", "dverna"};
 
     private String acceptedPassword = "finderpal";
 
@@ -53,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
         //hides bottom bar
         navView.setVisibility(View.GONE);
-
 
         loginButton = findViewById(R.id.login_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 navView.setVisibility(View.VISIBLE);
 
                 //Switch screens to dashboard
-                navController.navigate(R.id.navigation_dashboard);
+                navController.navigate(R.id.navigation_home);
                 break;
             }
             else if (i == 3)
