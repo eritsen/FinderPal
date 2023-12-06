@@ -22,6 +22,11 @@ function executeCommand($buttonName) {
             return executeOnTargetServer('python navigate.py');
         case 'Return to base':
             return executeOnTargetServer('python return_to_base.py');
+        case 'Display item':
+            // Assuming the image file is named 'item_image.jpg' on the Raspberry Pi
+            $imageData = $ssh->exec('cat /home/desktop/TargetImages/Object1.jpg');
+            file_put_contents('image.jpg', $imageData); // Save the image data to a file
+            return 'Item image displayed';
         case 'Search for item':
             return executeOnTargetServer('python search_for_item.py');
         case 'Kill operation':
@@ -37,6 +42,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $command = $_POST['command'];
         $output = executeCommand($command);
         echo $output;
+
+ if (in_array($command, ['Navigate', 'Return to base', 'Search for item', 'Kill operation'])) {
+            // Fetch the updated image from the Raspberry Pi
+            $imageData = $ssh->exec('cat /path/to/your/image.jpg');
+            file_put_contents('image.jpg', $imageData); // Save the image data to a file
+        }
+
+
         exit; // Stop further execution after handling the command
     }
 }
@@ -67,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="button-container">
             <button class="commands" onclick="logCommand('Navigate')">Navigate</button>
             <button class="commands" onclick="logCommand('Return to base')">Return to base</button>
-            <button class="commands" onclick="logCommand('Search for item')">Search for item</button>
+            <button class="commands" onclick="logCommand('Display item')">Display item</button>
             <button class="commands" onclick="logCommand('Kill operation')">Kill operation</button>
         </div>
 
