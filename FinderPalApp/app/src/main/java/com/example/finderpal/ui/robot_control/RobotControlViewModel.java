@@ -3,6 +3,7 @@ package com.example.finderpal.ui.robot_control;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.util.Log;
 import android.view.View;
 
@@ -64,17 +65,18 @@ public class RobotControlViewModel extends ViewModel {
             // Create an intent for sshActivity
             Intent intent = new Intent(context, sshActivity.class);
 
-            String host = "example";
+            String host = "192.168.56.1";
             String port = "22";
-            String username = "example";
-            String password = "example";
+            String username = "nzpan";
+            String password = "Razorteethman1!";
 
             // Pass on data to sshActivity via intent
             intent.putExtra("host", host);
             intent.putExtra("port", port);
             intent.putExtra("username", username);
             intent.putExtra("password", password);
-            context.startActivity(intent);
+            context.startService(intent);
+
         } catch (ActivityNotFoundException e) {
             // Handle if the activity is not found
             e.printStackTrace();

@@ -10,10 +10,10 @@
         android:id="@+id/manualcontroldisablebutton"
         android:layout_width="179dp"
         android:layout_height="57dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
-        android:text="Manual Control Disable"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="64dp"
         android:enabled="false"
+        android:text="Manual Control Disable"
         app:layout_constraintBottom_toTopOf="@+id/searchforitembutton"
         app:layout_constraintStart_toEndOf="@+id/manualcontrolenablebutton" />
 
@@ -21,8 +21,8 @@
         android:id="@+id/manualcontrolenablebutton"
         android:layout_width="179dp"
         android:layout_height="57dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="64dp"
         android:text="Manual Control Enable"
         app:layout_constraintBottom_toTopOf="@+id/searchforitembutton"
         app:layout_constraintStart_toStartOf="parent" />
