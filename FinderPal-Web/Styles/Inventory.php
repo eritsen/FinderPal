@@ -13,29 +13,19 @@
     <div class = "table-wrapper">
  <table>
     <tr>
-    <td>Example 1</td>
+    <td>Person</td>
     </tr>
     <tr>
-    <td>Example 1</td>
+    <td>Teddy Bear</td>
     </tr>
     <tr>
-    <td>Example 1</td>
+    <td>Toy Truck</td>
     </tr>
     <tr>
-    <td>Example 1</td>
+    <td>Vase</td>
     </tr>
-    <tr>
-    <td>Example 1</td>
-    </tr>
-    <tr>
-    <td>Example 1</td>
-    </tr>
-    <tr>
-    <td>Example 1</td>
-    </tr>
-    <tr>
-    <td>Example 1</td>
-    </tr>
+    
+  
   </table>
 </div>
 

@@ -7,6 +7,7 @@ var activityLog = document.getElementById("activityLog");
 var existingLog = JSON.parse(localStorage.getItem('activityLog')) || [];
 var isButtonPressed = false; //check if the user is holding down a button
 
+const filePath = 'C:/xampp/htdocs/FinderPal-Web/Styles/Object4.jpg'; //Destination to the extracted file from the Raspberry PI
 
 
 // Add event listeners to buttons
@@ -83,8 +84,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
-// Keyboard event listener
-//document.addEventListener('keydown', handleKeyPress);
+
+
+function displayItemAndRefresh() {
+    logCommand('Display item');
+    location.reload(true);
+}
+
 
 // Go back function
 function goBack() {

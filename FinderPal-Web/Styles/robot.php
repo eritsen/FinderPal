@@ -1,10 +1,11 @@
 <?php
-include('Net/SSH2.php');
+include('Net/SFTP.php');
 
-$ssh = new Net_SSH2('172.20.10.4');
+$ssh = new Net_SFTP('172.20.10.7');
 if (!$ssh->login('desktop', 'admin')) {
     exit('Login Failed');
 }
+
 
 function executeOnTargetServer($command) {
     global $ssh;
@@ -13,29 +14,40 @@ function executeOnTargetServer($command) {
     return $output;
 }
 
-$imageFilePath = 'image.jpg';
-if (file_exists($imageFilePath)) {
+$imageFilePath = 'C:\xampp\htdocs\FinderPal-Web\Styles\image.jpg';
+/*if (file_exists($imageFilePath)) {
     unlink($imageFilePath);
-}
+}*/
 
 // Function to execute commands based on the clicked button
 function executeCommand($buttonName) {
-    global $ssh; // Access the global $ssh variable
+    global $ssh, $imageFilePath; // Access the global $ssh variable
 
     switch ($buttonName) {
-        case 'Navigate':
-            return executeOnTargetServer('python navigate.py');
-        case 'Return to base':
-            return executeOnTargetServer('python return_to_base.py');
+        case 'Control':
+            return executeOnTargetServer('ssh fares@172.20.10.8');
+
+        case 'Remove item':
+            if (file_exists($imageFilePath)) {
+    // Attempt to delete the file
+        unlink($imageFilePath); }
+        header("Refresh:0");
+
+        return NULL;
         case 'Display item':
             // Assuming the image file is named 'item_image.jpg' on the Raspberry Pi
-            $imageData = $ssh->exec('cat /home/desktop/TargetImages/Object1.jpg');
-            file_put_contents('image.jpg', $imageData); // Save the image data to a file
-            return 'Item image displayed';
+            return $ssh->get('/home/desktop/TargetImages/image.jpg','C:\xampp\htdocs\FinderPal-Web\Styles\image.jpg' );
+
         case 'Search for item':
             return executeOnTargetServer('python search_for_item.py');
         case 'Kill operation':
-            return executeOnTargetServer('python kill.py');
+            return executeOnTargetServer('pkill -9 bash');
+        case 'Seek1':
+            return executeOnTargetServer('python MainSoftware.py object1');
+        case 'Seek2':
+            return executeOnTargetServer('python MainSoftware.py object2');
+        case 'Seek3':
+            return executeOnTargetServer('python MainSoftware.py object3');
         default:
             return 'Invalid button clicked';
     }
@@ -47,13 +59,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $command = $_POST['command'];
         $output = executeCommand($command);
         echo $output;
-
- if (in_array($command, ['Navigate', 'Return to base', 'Search for item', 'Kill operation'])) {
-            // Fetch the updated image from the Raspberry Pi
-            $imageData = $ssh->exec('cat /path/to/your/image.jpg');
-            file_put_contents('image.jpg', $imageData); // Save the image data to a file
-        }
-
 
         exit; // Stop further execution after handling the command
     }
@@ -83,14 +88,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button class="arrow-button-down" onclick="logCommand('Move Backwards')">↓</button>
 
         <div class="button-container">
-            <button class="commands" onclick="logCommand('Navigate')">Navigate</button>
-            <button class="commands" onclick="logCommand('Return to base')">Return to base</button>
-            <button class="commands" onclick="logCommand('Display item')">Display item</button>
+            <button class="commands" onclick="logCommand('Control')">Control</button>
+            <button class="commands" onclick="logCommand('Seek1')">First object</button>
+            <button class="commands" onclick="logCommand('Seek2')">Second object</button>
+            <button class="commands" onclick="logCommand('Seek3')">Third object</button>
+            <button class="commands" onclick="displayItemAndRefresh()">Display item</button>
+            <button class="commands" onclick="logCommand('Remove item')">Remove item</button>
             <button class="commands" onclick="logCommand('Kill operation')">Kill operation</button>
+
         </div>
 
       <div class="image-box">
-        <img src="image.jpg" alt="Image Description" class="image">
+            <img src="image.jpg" class="image">
     </div>
 
         <div class="back-button" onclick="goBack()">
@@ -98,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 
-    <script defer src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 
 </html>

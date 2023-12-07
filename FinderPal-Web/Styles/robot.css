@@ -47,7 +47,7 @@ h1 {
     position: absolute;
     top: 20%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -100%);
 }
 
 
@@ -175,13 +175,18 @@ h1 {
 .image-box {
     
     margin-top: 20px; /* Adjust the margin as needed */
-    border: 2px solid #3498db; /* Border color */
+    border: 3px solid black; /* Border color */
     border-radius: 10px; /* Border radius for rounded corners */
     overflow: hidden; /* Hide overflow content */
-    margin-left: 300px;
+    margin-left: 350px;
+    width: 380px;
+    height: 280px;
+   
+    
 }
 
 .image {
+    
     width: 100%; /* Make the image fill the container */
     height: auto; /* Maintain aspect ratio */
     display: block; /* Remove any extra space beneath the image */
