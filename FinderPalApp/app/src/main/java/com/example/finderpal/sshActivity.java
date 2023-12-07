@@ -1,10 +1,14 @@
 package com.example.finderpal;
 
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.util.Log;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.apache.sshd.client.SshClient;
@@ -20,25 +24,23 @@ import java.io.OutputStream;
 import java.util.EnumSet;
 import java.util.concurrent.TimeUnit;
 
-public class sshActivity extends AppCompatActivity {
-
+public class sshActivity extends Service
+{
     ClientChannel channel;
-    TextView shellOutput;
     String host, username, password;
     Integer port;
     String command;
 
-    public void sshConnection()
-    {
-        // Get user credentials from indent
-        Intent intent = getIntent();
-        host = intent.getStringExtra("host");
-        port = Integer.parseInt(intent.getStringExtra("port"));
-        username = intent.getStringExtra("username");
-        password = intent.getStringExtra("password");
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        // Perform SSH connection or other background tasks here
+        String host = intent.getStringExtra("host");
+        int port = Integer.parseInt(intent.getStringExtra("port"));
+        String username = intent.getStringExtra("username");
+        String password = intent.getStringExtra("password");
 
         // Command which will be executed
-        command = "pwd\n";
+        command = "mkdir Hello\n";
 
         // Setting user.com property manually
         // since isn't set by default in android
@@ -63,22 +65,26 @@ public class sshActivity extends AppCompatActivity {
                     try (ClientSession session = client.connect(username, host, port).verify(10000).getSession()) {
                         session.addPasswordIdentity(password);
                         session.auth().verify(50000);
-                        System.out.println("Connection establihed");
+                        Log.i("Connection","Connection establihed");
 
                         // Create a channel to communicate
                         channel = session.createChannel(Channel.CHANNEL_SHELL);
-                        System.out.println("Starting shell");
+                        Log.i("Shell","Starting shell");
 
                         ByteArrayOutputStream responseStream = new ByteArrayOutputStream();
                         channel.setOut(responseStream);
 
                         // Open channel
                         channel.open().verify(5, TimeUnit.SECONDS);
-                        try (OutputStream pipedIn = channel.getInvertedIn()) {
+                        try (OutputStream pipedIn = channel.getInvertedIn())
+                        {
                             pipedIn.write(command.getBytes());
                             pipedIn.flush();
                         }
-
+                        catch (IOException e)
+                        {
+                            e.printStackTrace();
+                        }
                         // Close channel
                         channel.waitFor(EnumSet.of(ClientChannelEvent.CLOSED),
                                 TimeUnit.SECONDS.toMillis(5));
@@ -86,7 +92,6 @@ public class sshActivity extends AppCompatActivity {
                         // Output after converting to string type
                         String responseString = new String(responseStream.toByteArray());
                         System.out.println(responseString);
-                        shellOutput.setText(responseString);
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -99,7 +104,12 @@ public class sshActivity extends AppCompatActivity {
             }
         });
         thread.start();
-
+        return START_NOT_STICKY;
+    }
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
     }
 
     public void sendStringOverSSH(String dataToSend) {
@@ -126,6 +136,5 @@ public class sshActivity extends AppCompatActivity {
         });
         thread.start();
     }
-
 
 }

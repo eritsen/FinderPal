@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -93,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
 
             if ((i <= 3) && (enteredUsername.equals(currentUsername)) && (enteredPassword.equals(acceptedPassword)))
             {
+                getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
                 //Enable bottom navbar
                 navView.setVisibility(View.VISIBLE);
 
